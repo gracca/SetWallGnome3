@@ -1,5 +1,5 @@
-Set the wallpaper in Gnome 3
-============================
+SetWallGnome3
+=============
 
 A simple program to set the wallpaper in Gnome 3.
 
@@ -35,4 +35,4 @@ This is the about dialog:
 
 ![About dialog](./Screenshot3.png "About dialog")
 
-Have fun!
+**Have fun!**
