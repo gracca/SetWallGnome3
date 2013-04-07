@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 #-----------------------------------------------------------------------#
-# Set-Wall-Gnome3.py                                                    #
+# SetWallGnome3.py                                                      #
 #                                                                       #
 # Copyright (C) 2013 Germán A. Racca - <gracca[AT]gmail[DOT]com>        #
 #                                                                       #
