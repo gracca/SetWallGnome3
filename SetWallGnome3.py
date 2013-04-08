@@ -244,7 +244,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         about.set_version('0.1')
         about.set_copyright('Copyright (C) 2013 Germán A. Racca')
         about.set_license(lic)
-        about.set_website('http://gracca.github.com')
+        about.set_website('http://gracca.github.io/SetWallGnome3')
         about.set_comments('A simple program to set the wallpaper in Gnome 3')
         about.set_authors(['Germán A. Racca <gracca@gmail.com>'])
         about.set_documenters(['Germán A. Racca <gracca@gmail.com>'])
@@ -266,30 +266,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         if response == Gtk.ResponseType.OK:
             pics_new_path = dialog.entry_dir.get_text()
             if pics_new_path != '':
-                # update pics folder in config file
-                self.conf_file.set('pictures_folder', 'pics', pics_new_path)
-                self.conf_file.write(open(self.conf_path, 'w'))
                 # read pics path
                 self.pics_names_list(pics_new_path)
-                # reload tree view
-#                dialog.progressbar.set_fraction(0.0)
-#                frac = 1.0 / len(self.pics_list)
-#                print "frac: ", frac
-                self.liststore = Gtk.ListStore(GdkPixbuf.Pixbuf, str, str)
-                for name, pic in zip(self.pics_name, self.pics_list):
-                    try:
-                        pxbf = GdkPixbuf.Pixbuf.new_from_file_at_scale(pic,
-                                                                       100,
-                                                                       100,
-                                                                       True)
-                        self.liststore.append([pxbf, name, pic])
-                    except:
-                        skip = "\033[1m[ SKIP ]\033[0m"
-                        print skip + " Error reading file %s" % pic
-                    self.treeview.set_model(model=self.liststore)
-#                    new_val = dialog.progressbar.get_fraction() + frac
-#                    print "new val: ", new_val
-#                    dialog.progressbar.set_fraction(new_val)
+                # if not empty...
+                if len(self.pics_list) != 0:
+                    # ...update pics folder in config file...
+                    self.conf_file.set('pictures_folder', 'pics', pics_new_path)
+                    self.conf_file.write(open(self.conf_path, 'w'))
+                    # ... and reload tree view
+                    self.liststore = Gtk.ListStore(GdkPixbuf.Pixbuf, str, str)
+                    for name, pic in zip(self.pics_name, self.pics_list):
+                        try:
+                            pxbf = GdkPixbuf.Pixbuf.new_from_file_at_scale(pic,
+                                                                           100,
+                                                                           100,
+                                                                           True)
+                            self.liststore.append([pxbf, name, pic])
+                        except:
+                            skip = "\033[1m[ SKIP ]\033[0m"
+                            print skip + " Error reading file %s" % pic
+                        self.treeview.set_model(model=self.liststore)
         dialog.destroy()
 
 
@@ -313,10 +309,6 @@ class PrefsDialog(Gtk.Dialog):
         self.button_open = Gtk.Button(stock=Gtk.STOCK_OPEN)
         self.button_open.connect('clicked', self.on_button_open_clicked)
         self.grid.attach(self.button_open, 1, 0, 1, 1)
-
-#        self.progressbar = Gtk.ProgressBar()
-#        self.progressbar.set_fraction(0.0)
-#        self.grid.attach(self.progressbar, 0, 1, 2, 1)
 
         box = self.get_content_area()
         box.add(self.grid)
