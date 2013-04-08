@@ -118,7 +118,7 @@ class SetWallGnome3(Gtk.Window):
 
         self.scrolledwindow.add_with_viewport(self.treeview)
         self.grid.attach(self.scrolledwindow, 0, 0, 1, 1)
-        
+
         self.treeview.connect('row-activated', self.on_row_activated)
 
         # create a combo box for wallpaper rendering options
@@ -164,16 +164,16 @@ class SetWallGnome3(Gtk.Window):
         self.grid.attach_next_to(self.buttonbox, self.scrolledwindow,
                                  Gtk.PositionType.BOTTOM, 1, 1)
 
-
     # open image on double-click
     #----------------------------
     def on_row_activated(self, widget, path, column):
+        """Preview image when double-clicked"""
         selection = self.treeview.get_selection()
         model, treeiter = selection.get_selected()
         if treeiter is not None:
             name, pic = model[treeiter][1:]
             img = ViewPic(name, pic)
-        
+
     # function to read the pictures folder
     #--------------------------------------
     def pics_names_list(self, pics_path):
@@ -331,7 +331,7 @@ class PrefsDialog(Gtk.Dialog):
 
 class ViewPic(Gtk.Window):
     """View selected picture on double-click"""
-    
+
     def __init__(self, name, pic):
         """Initialize the window"""
         Gtk.Window.__init__(self)
@@ -353,7 +353,7 @@ class ViewPic(Gtk.Window):
 
         self.grid.add(self.image)
         self.show_all()
-        
+
 
 def main():
     """Show the window"""
