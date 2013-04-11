@@ -1,7 +1,7 @@
 SetWallGnome3
 =============
 
-A simple program to set the wallpaper in ![Gnome](http://www.gnome.org/) 3.
+A simple program to set the wallpaper in [Gnome](http://www.gnome.org/) 3.
 
 It is written in [Python](http://www.python.org/) and [Gtk+](http://www.gtk.org/) 3.
 
